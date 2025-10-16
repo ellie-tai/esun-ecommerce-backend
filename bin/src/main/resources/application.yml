@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: esun-ecommerce-backend
+  datasource:
+    # Default profile can be overridden by --spring.profiles.active=mysql or postgres
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+  jdbc:
+    template:
+      fetch-size: 100
+      max-rows: 10000
+server:
+  port: 8080
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/esun?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Taipei
+    username: root
+    password: root
+
+---
+spring:
+  config:
+    activate:
+      on-profile: postgres
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/esun
+    username: postgres
+    password: postgres
